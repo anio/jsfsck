@@ -1,7 +1,7 @@
 <html>
 <head>
-  <title>JSFuck - Write any JavaScript with 6 Characters: []()!+</title>
-  <meta name="description" content="JSFuck is an esoteric and educational programming style based on the atomic parts of JavaScript. It uses only six different characters to execute code.">
+  <title>jsf$ck - Write any JavaScript without parenthesis, with only 8 characters: +![]{}$`</title>
+  <meta name="description" content="jsf$ck is a fork from JSFuck, that doesn't use parenthesis.">
   <meta charset="utf-8" />
   <meta property="og:image" content="http://www.jsfuck.com/preview.png" />
   <meta name="viewport" content="width=device-width" />
@@ -33,7 +33,7 @@
       color: #323230;
       font-weight: bold;
       font-size: 20px;
-      line-height: 1em;
+      line-height: 1.2em;
     }
     
     h3 {
@@ -70,18 +70,26 @@
   </style>
 </head>
 <body>
-  <h1>JSFuck</h1>
+  <h1>jsf$ck</h1>
   
-  <h2>()+<br>[]!</h2>
+  <h2>!${}<br>[]+`</h2>
   
+  <p><strong>jsf$ck is a fork from <a href="http://jsfuck.com/">JSFuck</a>.</strong></p>
+
   <p>JSFuck is an esoteric and educational programming style based on the
   atomic parts of JavaScript. It uses only six different characters to
   write and execute code.</p>
-  
+
+  <p><strong>jsf$ck doesn't use the same characters as JSFuck. It uses </strong>+![]{}$`<strong> instead of </strong>+![]()</p>
+
+  <p><strong>It trades </strong>()<strong> for </strong>{}$`</p>
+
   <p>It does not depend on a browser, so you can even run it on Node.js.</p>
   
   <p>Use the form below to convert your own script. Uncheck "eval source" to
   get back a plain string.</p>
+
+  <p>Check "Run In Parent Scope" to access the return value.</p>
 
   <input id="input" type="text" value="alert(1)"/> 
   <button id="encode" type="text">Encode</button>
@@ -91,7 +99,7 @@
     <label for="eval">Eval Source</label>
   </div>
     <div class="checkbox">
-    <input id="scope" type="checkbox" checked />
+    <input id="scope" type="checkbox"/>
     <label for="scope">Run In Parent Scope</label>
   </div>
   
@@ -104,21 +112,10 @@
   <h3>Links</h3>
   
   <ul>
-    <li>
-      Share on 
-      <a href="https://twitter.com/intent/tweet?text=This%20project%20is%20crazy:%20http://jsfuck.com%20%E2%80%93%20Write%20any%20JavaScript%20with%206%20characters%20[]()!+%20//%20via%20@aemkei" target="_blank">Twitter</a>, 
-      <a href="https://plus.google.com/share?url=http://www.jsfuck.com" target="_blank">Google+</a>
-    </li>
-    <li>View source on <a href="http://github.com/aemkei/jsfuck">GitHub</a></li>
-    <li>Follow <a href="http://twitter.com/aemkei">@aemkei</a> (Martin Kleppe)</li>
-    <li>Original discussion at <a href="http://sla.ckers.org/forum/read.php?24,32930">Sla.ckers.org</a></li>
-  </ul>
-  
-  <h3>Alternatives</h3>
-  <ul>
-    <li><a href="http://patriciopalladino.com/files/hieroglyphy/">Hieroglyphy</a> (8 chars, browser only)</li>
-    <li><a href="http://utf-8.jp/public/jsfuck.html">utf-8.jp</a> (broken)</li>
-    <li><a href="http://discogscounter.getfreehosting.co.uk/js-noalnum.php">JS-NoAlnum</a> (broken)</li>
+    <li>View source on <a href="http://github.com/centime/jsfsck">GitHub</a></li>
+    <li>Parenthesis trick at <a href="http://blog.portswigger.net/2016/07/executing-non-alphanumeric-javascript.html">blog.portswigger.net</a> (by <a href="https://twitter.com/garethheyes">@garethheyes</a>)</li>
+    <li>Check out <a href="http://jsfuck.com">JSFuck</a> (by <a href="http://twitter.com/aemkei">@aemkei</a>)</li>
+
   </ul>
   
   <h3>Basics</h3>
@@ -127,7 +124,7 @@
     <li>false       =>  ![]</li>
     <li>true        =>  !![]</li>
     <li>undefined   =>  [][[]]</li>
-    <li>NaN         =>  +[![]]</li>
+    <li>NaN         =>  +{}</li>
     <li>0           =>  +[]</li>
     <li>1           =>  +!+[]</li>
     <li>2           =>  !+[]+!+[]</li>
@@ -136,15 +133,15 @@
     <li>Number      =>  +[]</li>
     <li>String      =>  []+[]</li>
     <li>Boolean     =>  ![]</li>
-    <li>Function    =>  []["filter"]</li>
+    <li>Function    =>  []["fill"]</li>
 
-    <li>eval        =>  []["filter"]["constructor"]( CODE )()</li>
-    <li>window      =>  []["filter"]["constructor"]("return this")()</li>
+    <li>run        =>  []["fill"]["constructor"]`$${ CODE }$```</li>
+    <li>eval       =>  []["fill"]["constructor"]`$${"return eval($)"}$``${ Code }`</li>
   </ul>
 
-  <p>See the full list <a href="https://github.com/aemkei/jsfuck/blob/master/jsfuck.js">here</a>.</p>
+  <p>See the full list <a href="https://github.com/centime/jsfsck/blob/master/jsfsck.js">here</a>.</p>
 
-  <script src="jsfuck.js"></script>
+  <script src="jsfsck.js"></script>
   <script>
 
     function $(id){
@@ -152,7 +149,7 @@
     }
     
     function encode(){
-      var output = JSFuck.encode($("input").value, $("eval").checked, $("scope").checked);
+      var output = jsfsck.encode($("input").value, $("eval").checked, $("scope").checked);
       $("output").value = output;
       $("stats").innerHTML = output.length + " chars";
     }
@@ -173,18 +170,5 @@
     };
   </script>
   
-  <script type="text/javascript">
-
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-57649-11']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-
-  </script>
 </body>
 </html>
