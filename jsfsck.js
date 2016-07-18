@@ -91,12 +91,12 @@
     ')':   '[[0]+false+[]["fill"]][0][20]',
     '*':   USE_CHAR_CODE,
     '+':   '`+`',
-    ',':   'Function`$${"return unescape"}$````${[]}`',//'([]["slice"]["call"](false+"")+"")[1]',
+    ',':   'Function`$${"return unescape"}$````${[]}`', // '([]["slice"]["call"](false+"")+"")[1]',
     '-':   '[+[.+[0000000001]][+[]]+""][+[]][2]',
     '.':   '[+[+!+[]+[+!+[]]+[!![]+[]][+[]][!+[]+!+[]+!+[]]+[!+[]+!+[]]+[+[]]][+[]]+[]][+[]][+!+[]]',
     '/':   'Function`$${"return "+`[[]+[]][+[]]`+".italics()"}$```[4]',
     ':':   '[Function`$${"return "+RegExp["name"]+"()"}$```+[]][0][3]',
-    ';':   USE_CHAR_CODE, //'("")["link"](")[14]',
+    ';':   USE_CHAR_CODE, // '("")["link"](")[14]',
     '<':   'Function`$${"return "+`[[]+[]][+[]]`+".italics()"}$```[0]',
     '=':   'Function`$${"return "+`[[]+[]][+[]]`+".fontcolor()"}$```[11]',
     '>':   'Function`$${"return "+`[[]+[]][+[]]`+".italics()"}$```[2]',
@@ -243,7 +243,53 @@
     }
   }
 
-  function encode(input, wrapWithEval, runInParentScope){
+
+  MAPPING_COMPRESS = {};
+  // small optimization over JSFuck's way to write numbers over 10
+  var mapNumbers=['+[]','+!+[]','!+[]+!+[]','!+[]+!+[]+!+[]','!+[]+!+[]+!+[]+!+[]','!+[]+!+[]+!+[]+!+[]+!+[]','!+[]+!+[]+!+[]+!+[]+!+[]+!+[]','!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]','!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]','!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]'];
+
+  function rewriteNumber(n){
+    return String(n).split('').join('+')
+        // .replace(/(\d)/,(_,i) => mapNumbers[i])
+        // .replace(/(\d)/g,(_,i) => '['+mapNumbers[i]+']')
+        .replace(/(\d)/, function(_,i){ return mapNumbers[i]})
+        .replace(/(\d)/g, function(_,i){ return '['+mapNumbers[i]+']'})
+  }
+
+  function mapCompress(){
+    for (var i=MIN;i<MAX;i++){
+      character = String.fromCharCode(i);
+      reWrittenChar = '$$$['+rewriteNumber(i)+']';
+      if (MAPPING[character].length > reWrittenChar.length){
+        MAPPING_COMPRESS[character] = reWrittenChar;
+      } else {
+        MAPPING_COMPRESS[character] = MAPPING[character];
+      }
+    }
+  }
+
+  // compress +eval -parent // Not implemented
+  // [Function`$${"$$$=[...Array(255).keys()].map(f=>unescape("%"+f.toString(16)))"}$```][Function`$${$$$[97]}$```]
+  // compress -eval +parent
+  // Function`$${"return $//"+Function`$${'$$$=[...Array(255).keys()].map(f=>unescape("%"+f.toString(16)))'}$```}$``${$$$[97]}`
+  // compress +eval +parent
+  // Function`$${"return eval($)//"+Function`$${'$$$=[...Array(255).keys()].map(f=>unescape("%"+f.toString(16)))'}$```}$``${$$$[97]}`
+  function compress(input, wrapWithEval){
+    mapCompress();
+    output = "[][" + encode("fill") + "]" + "[" + encode("constructor") + "]" +
+          "`$${" + ((wrapWithEval)? encode('return eval($)//') : encode('return $//')) +
+            "+[][" + encode("fill") + "]" + "[" + encode("constructor") + "]" +
+              "`$${" + 
+                  encode('$$$=[...Array(255).keys()].map(f=>unescape("%"+f.toString(16)))')+
+              "}$```"+
+          "}$``${" +
+            encode(input,false,false,false,true)+
+          "}$`";
+    return output
+  }
+
+
+  function encode(input, wrapWithEval, runInParentScope, compressCode, compressingRun){
 
 
     var output = [];
@@ -263,19 +309,19 @@
       if (replacement) {
         output.push("[" + replacement + "]+[]");
       } else {
-        replacement = MAPPING[c];
+        replacement = (compressingRun)? MAPPING_COMPRESS[c] : MAPPING[c];
         if (replacement){
           output.push(replacement);
-        } else {
-          replacement =
-            "[[]+[]][+[]][" + encode("constructor") + "]" +
-            "[" + encode("fromCharCode") + "]" +
-            "[" + encode(c.charCodeAt(0) + "") + "][+[]]";
+         } // else {
+        //   replacement =
+        //     "[[]+[]][+[]][" + encode("constructor") + "]" +
+        //     "[" + encode("fromCharCode") + "]" +
+        //     "[" + encode(c.charCodeAt(0) + "") + "][+[]]";
 
-          output.push(replacement);
-          MAPPING[c] = replacement;
+        //   output.push(replacement);
+        //   MAPPING[c] = replacement;
 
-        }
+        // }
       }
     });
 
@@ -285,13 +331,13 @@
       output += "+[]";
     }
 
-    if (wrapWithEval){
+
+    if (compressCode){        
+        output = compress(input, wrapWithEval);
+    } else if (wrapWithEval){
       if (runInParentScope){
-
-      // Function`$${"return eval($[0])"}$$``1+4`
-      // Function`$${"return eval($)"}$``${"1+4"}`
-
-        
+        // Function`$${"return eval($[0])"}$$``1+4`
+        // Function`$${"return eval($)"}$``${"1+4"}`
         output = "[][" + encode("fill") + "]" +
           "[" + encode("constructor") + "]" +
           "`$${"+encode("return eval($)")+"}$``${"+output+"}`";
@@ -327,6 +373,7 @@
   self.jsfsck = {
     encode: encode,
     test: test,
-    MAPPING: MAPPING
+    MAPPING: MAPPING,
+    MAPPING_COMPRESS: MAPPING_COMPRESS
   };
 })(typeof(exports) === "undefined" ? window : exports);
