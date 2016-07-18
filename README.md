@@ -1,13 +1,13 @@
-# jsf$ck `+![]{}$\``
+# jsf$ck ``+![]{}$` ``
   
 jsf$ck is a fork from [jsfuck.com](http://www.jsfuck.com).
 
 
 JSFuck is an esoteric and educational programming style based on the atomic parts of JavaScript. It uses only six different characters to write and execute code.
 
-jsf$ck doesn't use the same characters as JSFuck. It uses `+![]{}$\`` instead of `+![]()`
+jsf$ck doesn't use the same characters as JSFuck. It uses ``+![]{}$` `` instead of `+![]()`
 
-It trades `()` for `{}$\``
+It trades `()` for ``{}$` ``
 
 It does not depend on a browser, so you can even run it on Node.js.
 
@@ -18,7 +18,19 @@ Demo: [centime.org/jsfsck](http://centime.org/jsfsck)
 The following source will do an `alert(1)`:
 
 ```js
-[][[![]+[]][+[]][+[]]+[[![]]+[][[]]][+[]][+!+[]+[+[]]]+[![]+[]][+[]][!+[]+!+[]]+[![]+[]][+[]][!+[]+!+[]]][[![]+{}][+[]][+!+[]+[+[]]]+[[]+{}][+[]][+!+[]]+[[][[]]+[]][+[]][+!+[]]+[![]+[]][+[]][!+[]+!+[]+!+[]]+[!![]+[]][+[]][+[]]+[!![]+[]][+[]][+!+[]]+[[][[]]+[]][+[]][+[]]+[![]+{}][+[]][+!+[]+[+[]]]+[!![]+[]][+[]][+[]]+[[]+{}][+[]][+!+[]]+[!![]+[]][+[]][+!+[]]]\`$${[![]+[]][+[]][+!+[]]+[![]+[]][+[]][!+[]+!+[]]+[!![]+[]][+[]][!+[]+!+[]+!+[]]+[!![]+[]][+[]][+!+[]]+[!![]+[]][+[]][+[]]+[[][[]]+[][[![]+[]][+[]][+[]]+[[![]]+[][[]]][+[]][+!+[]+[+[]]]+[![]+[]][+[]][!+[]+!+[]]+[![]+[]][+[]][!+[]+!+[]]]][+[]][!+[]+!+[]+[!+[]+!+[]]]+[+!+[]]+[[+[]]+![]+[][[![]+[]][+[]][+[]]+[[![]]+[][[]]][+[]][+!+[]+[+[]]]+[![]+[]][+[]][!+[]+!+[]]+[![]+[]][+[]][!+[]+!+[]]]][+[]][!+[]+!+[]+[+[]]]}$\`\`\`
+[][[![]+[]][+[]][+[]]+[[![]]+[][[]]][+[]][+!+[]+[+[]]]+[![]+[]]
+[+[]][!+[]+!+[]]+[![]+[]][+[]][!+[]+!+[]]][[![]+{}][+[]][+!+[]+
+[+[]]]+[[]+{}][+[]][+!+[]]+[[][[]]+[]][+[]][+!+[]]+[![]+[]][+[]
+][!+[]+!+[]+!+[]]+[!![]+[]][+[]][+[]]+[!![]+[]][+[]][+!+[]]+[[]
+[[]]+[]][+[]][+[]]+[![]+{}][+[]][+!+[]+[+[]]]+[!![]+[]][+[]][+[
+]]+[[]+{}][+[]][+!+[]]+[!![]+[]][+[]][+!+[]]]`$${[![]+[]][+[]][
++!+[]]+[![]+[]][+[]][!+[]+!+[]]+[!![]+[]][+[]][!+[]+!+[]+!+[]]+
+[!![]+[]][+[]][+!+[]]+[!![]+[]][+[]][+[]]+[[][[]]+[][[![]+[]][+
+[]][+[]]+[[![]]+[][[]]][+[]][+!+[]+[+[]]]+[![]+[]][+[]][!+[]+!+
+[]]+[![]+[]][+[]][!+[]+!+[]]]][+[]][!+[]+!+[]+[!+[]+!+[]]]+[+!+
+[]]+[[+[]]+![]+[][[![]+[]][+[]][+[]]+[[![]]+[][[]]][+[]][+!+[]+
+[+[]]]+[![]+[]][+[]][!+[]+!+[]]+[![]+[]][+[]][!+[]+!+[]]]][+[]]
+[!+[]+!+[]+[+[]]]}$```
 ``` 
 
 ### Basics
@@ -38,10 +50,10 @@ The following source will do an `alert(1)`:
     Function    =>  []["fill"]
     run         =>  []["fill"]["constructor"]( CODE )()
 
-    run        =>  []["fill"]["constructor"]\`$${ CODE }$\`\`\`
-    eval       =>  []["fill"]["constructor"]\`$${"return eval($)"}$\`\`${ Code }\`
+    run        =>  []["fill"]["constructor"]`$${ CODE }$```
+    eval       =>  []["fill"]["constructor"]`$${"return eval($)"}$``${ Code }`
     
-See the full list [here](https://github.com/centime/jsfsck/blob/master/jsfsck.js) and read the JSFuck [Wiki](https://github.com/aemkei/jsfuck/wiki) for a detailed explanation.  
+See the full list [here](https://github.com/centime/jsfsck/blob/master/jsfsck.js) and read the [JSFuck Wiki](https://github.com/aemkei/jsfuck/wiki) for a detailed explanation.  
 
 ### Links
 
