@@ -32,47 +32,47 @@
     'e':   '[true+""][0][3]',
     'f':   '[false+""][0][0]',
     'g':   '[false+[0]+String][0][20]',
-    'h':   'Function`$${"return "+1+0+1+"..toString("+2+1+")"}$```[1]',
+    'h':   'Function`$${"return"+`[`+1+0+1+`][0]`+".toString("+2+1+")"}$```[1]',
     'i':   '[[false]+undefined][0][10]',
     'j':   '[[]+{}][0][10]',
-    'k':   'Function`$${"return "+2+0+"..toString("+2+1+")"}$```',
+    'k':   'Function`$${"return"+`[`+2+0+`][0]`+".toString("+2+1+")"}$```',
     'l':   '[false+""][0][2]',
     'm':   '[Number+""][0][11]',
     'n':   '[undefined+""][0][1]',
     'o':   '[[]+{}][0][1]',
-    'p':   'Function`$${"return "+2+1+1+"..toString("+3+1+")"}$```[1]',
-    'q':   'Function`$${"return "+2+1+2+"..toString("+3+1+")"}$```[1]',
+    'p':   'Function`$${"return"+`[`+2+1+1+`][0]`+".toString("+3+1+")"}$```[1]',
+    'q':   'Function`$${"return"+`[`+2+1+2+`][0]`+".toString("+3+1+")"}$```[1]',
     'r':   '[true+""][0][1]',
     's':   '[false+""][+[]][3]',
     't':   '[true+""][+[]][0]',
     'u':   '[undefined+""][+[]][0]',
-    'v':   'Function`$${"return "+3+1+"..toString("+3+2+")"}$```',
-    'w':   'Function`$${"return "+3+2+"..toString("+3+3+")"}$```',
-    'x':   'Function`$${"return "+1+0+1+"..toString("+3+4+")"}$```[1]',
+    'v':   'Function`$${"return"+`[`+3+1+`][0]`+".toString("+3+2+")"}$```',
+    'w':   'Function`$${"return"+`[`+3+2+`][0]`+".toString("+3+3+")"}$```',
+    'x':   'Function`$${"return"+`[`+1+0+1+`][0]`+".toString("+3+4+")"}$```[1]',
     'y':   '[NaN+[Infinity]][+[]][10]',
-    'z':   'Function`$${"return "+3+5+"..toString("+3+6+")"}$```',
+    'z':   'Function`$${"return"+`[`+3+5+`][0]`+".toString("+3+6+")"}$```',
 
     'A':   '[+[]+Array][0][10]',
     'B':   '[+[]+Boolean][0][10]',
-    'C':   'Function`$${"return escape"}$````${false}`[2]',
-    'D':   'Function`$${"return escape"}$````]`[2]',
+    'C':   'Function`$${"return"+`[`+"escape"+`][0]`}$````${false}`[2]',
+    'D':   'Function`$${"return"+`[`+"escape"+`][0]`}$````]`[2]',
     'E':   '[RegExp+""][0][12]',
     'F':   '[+[]+Function][0][10]',
-    'G':   '[false+Function`$${"return Date"}$`````][0][30]',
+    'G':   '[false+Function`$${"return"+`[`+"Date"+`][0]`}$`````][0][30]',
     'H':   USE_CHAR_CODE,
     'I':   '[Infinity+""][0][0]',
     'J':   USE_CHAR_CODE,
     'K':   USE_CHAR_CODE,
     'L':   USE_CHAR_CODE,
-    'M':   '[true+Function`$${"return Date"}$`````][0][30]',
+    'M':   '[true+Function`$${"return"+`[`+"Date"+`][0]`}$`````][0][30]',
     'N':   '[NaN+""][0][0]',
     'O':   '[!![]+{}][0][12]',
     'P':   USE_CHAR_CODE,
     'Q':   USE_CHAR_CODE,
     'R':   '[+[]+RegExp][0][10]',
     'S':   '[+[]+String][0][10]',
-    'T':   '[NaN+Function`$${"return Date"}$`````][0][30]',
-    'U':   '[NaN+Function`$${"return toString()"}$```][0][11]',
+    'T':   '[NaN+Function`$${"return"+`[`+"Date"+`][0]`}$`````][0][30]',
+    'U':   '[NaN+Function`$${"return"+`[`+"toString()"+`][0]`}$```][0][11]',
     'V':   USE_CHAR_CODE,
     'W':   USE_CHAR_CODE,
     'X':   USE_CHAR_CODE,
@@ -81,26 +81,26 @@
 
     ' ':   '[!![]+{}][0][11]',
     '!':   '`!`',
-    '"':   'Function`$${"return "+`[[]+[]][+[]]`+".fontcolor()"}$```[12]',
+    '"':   'Function`$${"return"+`[[]+[]][+[]]`+".fontcolor()"}$```[12]',
     '#':   USE_CHAR_CODE,
     '$':   '`$`',
-    '%':   'Function`$${"return escape"}$````[`[0]',
+    '%':   'Function`$${"return"+`[`+"escape"+`][0]`}$````[`[0]',
     '&':   USE_CHAR_CODE,
     '\'':  USE_CHAR_CODE,
     '(':   '[undefined+[]["fill"]][0][22]',
     ')':   '[[0]+false+[]["fill"]][0][20]',
     '*':   USE_CHAR_CODE,
     '+':   '`+`',
-    ',':   'Function`$${"return unescape"}$````${[]}`', // '([]["slice"]["call"](false+"")+"")[1]',
+    ',':   'Function`$${"return"+`[`+"unescape"+`][0]`}$````${[]}`', // '([]["slice"]["call"](false+"")+"")[1]',
     '-':   '[+[.+[0000000001]][+[]]+""][+[]][2]',
     '.':   '[+[+!+[]+[+!+[]]+[!![]+[]][+[]][!+[]+!+[]+!+[]]+[!+[]+!+[]]+[+[]]][+[]]+[]][+[]][+!+[]]',
-    '/':   'Function`$${"return "+`[[]+[]][+[]]`+".italics()"}$```[4]',
-    ':':   '[Function`$${"return "+RegExp["name"]+"()"}$```+[]][0][3]',
+    '/':   'Function`$${"return"+`[[[]+[]][0]`+".italics()"+`][0]`}$```[4]',
+    ':':   '[Function`$${"return"+`[`+RegExp["name"]+"()"+`][0]`}$```+[]][0][3]',
     ';':   USE_CHAR_CODE, // '("")["link"](")[14]',
-    '<':   'Function`$${"return "+`[[]+[]][+[]]`+".italics()"}$```[0]',
-    '=':   'Function`$${"return "+`[[]+[]][+[]]`+".fontcolor()"}$```[11]',
-    '>':   'Function`$${"return "+`[[]+[]][+[]]`+".italics()"}$```[2]',
-    '?':   '[Function`$${"return "+RegExp["name"]+"()"}$```+[]][0][2]',
+    '<':   'Function`$${"return"+`[[]+[]][+[]]`+".italics()"}$```[0]',
+    '=':   'Function`$${"return"+`[[]+[]][+[]]`+".fontcolor()"}$```[11]',
+    '>':   'Function`$${"return"+`[[]+[]][+[]]`+".italics()"}$```[2]',
+    '?':   '[Function`$${"return"+`[`+RegExp["name"]+"()"+`][0]`}$```+[]][0][2]',
     '@':   USE_CHAR_CODE,
     '[':   '`[`',
     '\\':  USE_CHAR_CODE,
@@ -120,7 +120,7 @@
     for (var key in MAPPING){
       if (MAPPING[key] === USE_CHAR_CODE){
         // MAPPING[key] = 'Function`$${"return unescape(\"%'+ key.charCodeAt(0).toString(16).replace(/(\d+)/g, "+($1)+\"") + ')"}$```';
-        MAPPING[key] = encode('return unescape("%'+key.charCodeAt(0).toString(16)+'")',true,false);
+        MAPPING[key] = encode('return[unescape("%'+key.charCodeAt(0).toString(16)+'")][0]',true,false);
       }
     }
   }
@@ -357,6 +357,7 @@
 
 
   function test(){
+    var totalLength = 0;
     for (i = MIN; i <= MAX; i++){
       character = String.fromCharCode(i);
       encoded = encode(character);
@@ -366,8 +367,10 @@
       if (/\(|\)/.test(encoded)){
         console.log('Parenthesis  found in: '+character); 
       }
-      console.log('Tests completed');
+      totalLength += encoded.length;
     }
+    console.log('Tests completed');
+    console.log('Summed length of characters mapping: ' + totalLength);
   }
 
   self.jsfsck = {

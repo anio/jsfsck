@@ -39,17 +39,17 @@ The following source will do an `alert(1)`:
 
 
 
-It works by creating an array `$$$` where characters are stored following their ascii number. Whenever it is shorter than our previous expression to get a character, we will now be able to use instead: `$$$[ ASCII_CODE ]`.
+It works by creating an array `$$$` where characters are stored according to their ascii number. Whenever it is shorter than our previous expression to get a character, we will now be able to use instead: `$$$[ ASCII_CODE ]`.
 
 Notes:
 
-* It adds an overhead of ~20k characters, so use it is not to be used on already small outputs.
+* It adds an overhead of ~20k characters, so it is not to be used on already small outputs.
 
 * It has the side-effect of creating a variable, named `$$$`.
 
-* It works rather well, for example the js code of this page has been encoded (see source). Compression reduced it to `37k characters vs 288k previously`.
+* The js code of this page has been encoded (see source). Compression reduced it to `from 288k to 37k characters`.
 
-* It is made possible by the fact that `$` is a valid character in variable names.
+* It is made possible by the fact that `$` is a valid literal.
 
 Brief explanations:
 
@@ -100,6 +100,13 @@ And where does ```Function`$${"return eval($)"}$``${"STRING_TO_EVAL"}` ``` come 
 > Function(['$','$'],'return $')([],'str')
 'str'
 > Function`$${'return $'}$``${'str'}`
+'str'
+```
+
+Bonus:
+
+```js
+> Function`$${'return eval($+[])'}$$``'str'`
 'str'
 ```
 

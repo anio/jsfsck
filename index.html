@@ -111,14 +111,14 @@
   
   <h3>Compress</h3>
 
-  <p>It works by creating an array <strong>$$$</strong> where characters are stored regarding to their ascii number. Whenever it is shorter than our previous expression to get a character, we will now be able to use instead: <strong>$$$[ ASCII_CODE ]</strong>.</p>
+  <p>It works by creating an array <strong>$$$</strong> where characters are stored according to their ascii number. Whenever it is shorter than our previous expression to get a character, we will now be able to use instead: <strong>$$$[ ASCII_CODE ]</strong>.</p>
 
   <p>Notes:</p>
   <ul>
-    <li>It adds an overhead of ~20k characters, so use it is not to be used on already small outputs.</li>
+    <li>It adds an overhead of ~20k characters, so it is not to be used on already small outputs.</li>
     <li>It has the side-effect of creating a variable, named <strong>$$$</strong>.</li>
-    <li>It works rather well, for example the js code of this page has been encoded (<a href="view-source:http://centime.org/jsfsck/">see source</a>). Compression reduced it to <strong>37k characters vs 288k previously</strong>.</li>
-    <li>It is made possible by the fact that <strong>$</strong> is a valid character in variable names.</li>
+    <li>The js code of this page has been encoded (<a href="view-source:http://centime.org/jsfsck/">see source</a>). Compression reduced it <strong>from 288k to 37k characters</strong>.</li>
+    <li>It is made possible by the fact that <strong>$</strong> is a valid literal.</li>
   </ul>
 
   <p>Brief explanations:</p>
@@ -158,8 +158,7 @@ Function`$${
 `${$$$[ ASCII_CODE ]+...}`
   </textarea>
 
-  <p>And where does 
-<strong>Function`$${"return eval($)"}$``${"STRING_TO_EVAL"}`</strong> come from ? Well :</p>
+  <p>And where does <strong>Function`$${"return eval($)"}$``${"STRING_TO_EVAL"}`</strong> come from ? Well :</p>
   <textarea style="height:140px" readonly="yes">
 > function f($,$){return $}([],'str')
 'str'
@@ -168,6 +167,14 @@ Function`$${
 > Function`$${'return $'}$``${'str'}`
 'str'
   </textarea>
+
+  <p>Bonus:</p>
+  <textarea style="height:60px" readonly="yes">
+> Function`$${'return eval($+[])'}$$``'str'`
+'str'
+  </textarea>
+  
+
 
 
   <h3>Basics</h3>
