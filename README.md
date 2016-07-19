@@ -1,17 +1,19 @@
 # jsf$ck ``+![]{}$` ``
   
-jsf$ck is a fork from [jsfuck.com](http://www.jsfuck.com).
+jsf$ck is a fork from [jsfuck.com](http://www.jsfuck.com) which doesn't use parenthesis.
 
 
 JSFuck is an esoteric and educational programming style based on the atomic parts of JavaScript. It uses only six different characters to write and execute code.
 
-jsf$ck doesn't use the same characters as JSFuck. It uses ``+![]{}$` `` instead of `+![]()`
+jsf$ck uses ``+![]{}$` `` instead of `+![]()`
 
-It trades `()` for ``{}$` ``
+It trades `()` for ``{}$` `` thanks to [the work of @garethheyes](http://blog.portswigger.net/2016/07/executing-non-alphanumeric-javascript.html)
 
 It does not depend on a browser, so you can even run it on Node.js.
 
 Demo: [centime.org/jsfsck](http://centime.org/jsfsck)
+
+* *EXCLUSIVITY* jsf$ck: Compress the size of large sources (see explications below).
 
 ### Example
 
@@ -121,7 +123,7 @@ See the full list [here](https://github.com/centime/jsfsck/blob/master/jsfsck.js
 
 * *ping me: [/u/centime](https://www.reddit.com/user/Centime/), [gmail](mailto:quelques.centimes@gmail.com)
 
-* Parenthesis trick at [blog.portswigger.net](http://blog.portswigger.net/2016/07/executing-non-alphanumeric-javascript.html) (by [@garethheyes](https://twitter.com/garethheyes))
+* Template literals trick at [blog.portswigger.net](http://blog.portswigger.net/2016/07/executing-non-alphanumeric-javascript.html) (by [@garethheyes](https://twitter.com/garethheyes))
 
 * Check out [JSFuck](http://jsfuck.com) (by [@aemkei](http://twitter.com/aemkei))
 
