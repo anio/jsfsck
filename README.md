@@ -1,6 +1,6 @@
 # jsf$ck ``+![]{}$` ``
   
-jsf$ck is a fork from [jsfuck.com](http://www.jsfuck.com) which doesn't use parenthesis.
+jsf$ck is a fork from [jsfuck.com](http://www.jsfuck.com) that doesn't use parenthesis.
 
 
 JSFuck is an esoteric and educational programming style based on the atomic parts of JavaScript. It uses only six different characters to write and execute code.
@@ -47,7 +47,7 @@ Notes:
 
 * It has the side-effect of creating a variable, named `$$$`.
 
-* It works rather well, for example the js code of this page has been encoded (see source). Compression reducedit to `37k characters vs 288k previously`.
+* It works rather well, for example the js code of this page has been encoded (see source). Compression reduced it to `37k characters vs 288k previously`.
 
 * It is made possible by the fact that `$` is a valid character in variable names.
 
@@ -66,11 +66,12 @@ Now, we can't use `\n` for new lines, nor `;`, so we will have to do in a single
 
 ```js
 // Theses solutions both work, but we either lose access to the return value, or it gets corrupted
-[eval('$$$=[...Array...')][eval($$$[ ASCII_CODE ]+...)]
-eval('$$$=[...Array...')+eval(+$$$[ ASCII_CODE ]+...)
+[eval('$$$=[...Array...')][eval($$$[ ASCII_CODE ]+...)] //undefined
+eval('$$$=[...Array...')+eval(+$$$[ ASCII_CODE ]+...) //undefined+RETURN_VALUE
 
 // The solution is to ignore the return value of the affectation by making it a comment in a nested eval
-eval('eval//'+eval('$$$=[...Array...'))($$$[ ASCII_CODE ]+...)
+// eg: eval('eval//'+undefined) //[Function: eval]
+eval('eval//'+eval('$$$=[...Array...'))($$$[ ASCII_CODE ]+...) //RETURN_VALUE
 ```
 
 Close enough, but we don't actually have access to `eval`. What we have is the `Function` constructor, called via template literals. We have to adjust accordingly:
@@ -91,9 +92,16 @@ Function`$${
 `${$$$[ ASCII_CODE ]+...}`
 ```
 
-ps: I might write some more to explain where ```Function`$${"return eval($)"}$``${"STRING_TO_EVAL"}` ``` comes from, but if you see this and are interested ping me* and I'll get it done.
+And where does ```Function`$${"return eval($)"}$``${"STRING_TO_EVAL"}` ``` come from ? Well :
 
-
+```js
+> function f($,$){return $}([],'str')
+'str'
+> Function(['$','$'],'return $')([],'str')
+'str'
+> Function`$${'return $'}$``${'str'}`
+'str'
+```
 
 ### Basics
               

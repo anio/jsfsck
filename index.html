@@ -42,17 +42,13 @@
         
     p, li, textarea, .actions {
       width: 100%;
-      max-width: 600px;
+      max-width: 700px;
     }
     
     textarea {
       display: block;
       height: 200px;
       margin: 1em 0;
-    }
-    
-    ul.pre li{
-      white-space: pre;
     }
     
     .checkbox {
@@ -74,7 +70,7 @@
   
   <h2>!${}<br>[]+`</h2>
   
-  <p><strong>jsf$ck is a fork from <a href="http://jsfuck.com/">JSFuck</a> which doesn't use parenthesis.</strong></p>
+  <p><strong>jsf$ck is a fork from <a href="http://jsfuck.com/">JSFuck</a> that doesn't use parenthesis.</strong></p>
 
   <p>JSFuck is an esoteric and educational programming style based on the
   atomic parts of JavaScript. It uses only six different characters to
@@ -115,18 +111,14 @@
   
   <h3>Compress</h3>
 
-  <p>It works by creating an array <strong>$$$</strong> where characters are stored following their ascii number. Whenever it is shorter than our previous expression to get a character, we will now be able to use instead: <strong>$$$[ ASCII_CODE ]</strong>.</p>
+  <p>It works by creating an array <strong>$$$</strong> where characters are stored regarding to their ascii number. Whenever it is shorter than our previous expression to get a character, we will now be able to use instead: <strong>$$$[ ASCII_CODE ]</strong>.</p>
 
   <p>Notes:</p>
-  <ul class="pre">
-    <li>It adds an overhead of ~20k characters, so use it is not 
-      to be used on already small outputs.</li>
+  <ul>
+    <li>It adds an overhead of ~20k characters, so use it is not to be used on already small outputs.</li>
     <li>It has the side-effect of creating a variable, named <strong>$$$</strong>.</li>
-    <li>It works rather well, for example the js code of this page 
-has been encoded (see source). Compression reduced it to 
-<strong>37k characters vs 288k previously</strong>.</li>
-    <li>It is made possible by the fact that <strong>$</strong> is a valid character 
-in variable names.</li>
+    <li>It works rather well, for example the js code of this page has been encoded (<a href="view-source:http://centime.org/jsfsck/">see source</a>). Compression reduced it to <strong>37k characters vs 288k previously</strong>.</li>
+    <li>It is made possible by the fact that <strong>$</strong> is a valid character in variable names.</li>
   </ul>
 
   <p>Brief explanations:</p>
@@ -139,13 +131,14 @@ eval($$$[ ASCII_CODE_1 ]+$$$[ ASCII_CODE_2 ]+...)
   </textarea>
 
   <p>Now, we can't use <strong>\n</strong> for new lines, nor <strong>;</strong>, so we will have to do in a single expression :</p>
-  <textarea style="height:180px" readonly="yes">
+  <textarea style="height:200px" readonly="yes">
 // Theses solutions both work, but we either lose access to the return value, or it gets corrupted
-[eval('$$$=[...Array...')][eval($$$[ ASCII_CODE ]+...)]
-eval('$$$=[...Array...')+eval(+$$$[ ASCII_CODE ]+...)
+[eval('$$$=[...Array...')][eval($$$[ ASCII_CODE ]+...)] //undefined
+eval('$$$=[...Array...')+eval(+$$$[ ASCII_CODE ]+...) //undefined+RETURN_VALUE
 
 // The solution is to ignore the return value of the affectation by making it a comment in a nested eval
-eval('eval//'+eval('$$$=[...Array...'))($$$[ ASCII_CODE ]+...)
+// eg: eval('eval//'+undefined) //[Function: eval]
+eval('eval//'+eval('$$$=[...Array...'))($$$[ ASCII_CODE ]+...) //RETURN_VALUE
   </textarea>
 
   <p>Close enough, but we don't actually have access to <strong>eval</strong>. What we have is the <strong>Function</strong> constructor, called via template literals. We have to adjust accordingly:</p>
@@ -165,12 +158,21 @@ Function`$${
 `${$$$[ ASCII_CODE ]+...}`
   </textarea>
 
-  <p>ps: I might write some more to explain where 
-<strong>Function`$${"return eval($)"}$``${"STRING_TO_EVAL"}`</strong> comes from, but if you see this and are interested ping me* and I'll get it done.</p>
+  <p>And where does 
+<strong>Function`$${"return eval($)"}$``${"STRING_TO_EVAL"}`</strong> come from ? Well :</p>
+  <textarea style="height:140px" readonly="yes">
+> function f($,$){return $}([],'str')
+'str'
+> Function(['$','$'],'return $')([],'str')
+'str'
+> Function`$${'return $'}$``${'str'}`
+'str'
+  </textarea>
+
 
   <h3>Basics</h3>
   
-  <ul class="pre">
+  <ul>
     <li>false       =>  ![]</li>
     <li>true        =>  !![]</li>
     <li>undefined   =>  [][[]]</li>
